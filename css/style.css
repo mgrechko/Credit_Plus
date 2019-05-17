@@ -1,0 +1,348 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+img{
+	max-width: 100%;
+}
+a{
+	text-decoration: none;
+	color: #003366;
+}
+button{
+	border: none;
+	background: none;
+}
+body{
+	height: 4000px;
+}
+.button{
+	background-color: #ff8900;
+	border-radius: 3px;
+}
+.auth-button{
+	width: 109px;
+	height: 36px;
+}
+.button-link{
+	font-size: 16px;
+	color: #ffffff;
+	font-family: 'AvenirNextCyr-Demi', sans-serif;
+}
+.auth-button-link{
+	font-size: 16px;
+	color: #ffffff;
+	font-family: 'AvenirNextCyr-Demi', sans-serif;
+	border-bottom: 1px solid #ffffff;
+}
+.font-avenir-next-cyr-bold{
+	font-family: 'AvenirNextCyr-Bold', sans-serif;
+}
+.font-avenir-next-cyr-demi{
+	font-family: 'AvenirNextCyr-Demi', sans-serif;
+}
+.font-avenir-next-cyr-regular{
+	font-family: 'AvenirNextCyr-Regular', sans-serif;
+}
+.font-lato-black{
+	font-family: 'Lato-Black', sans-serif;
+}
+.font-roboto-bold{
+	font-family: 'Roboto-Bold', sans-serif;
+}
+.font-avenir-next-bold{
+	font-family: 'AvenirNext-Bold', sans-serif;
+}
+.font-myriad-pro-regular{
+	font-family: 'MyriadPro-Regular', sans-serif;
+}
+.disabled{
+	font-family: 'AvenirNextCyr-Bold', sans-serif;
+	pointer-events: none;
+   	cursor: default;
+   	font-size: 16px;
+}
+.active{
+	font-family: 'AvenirNextCyr-Regular', sans-serif;
+	font-size: 16px;
+	border-bottom: 1px solid #003366;
+}
+.wrapper{
+	margin: 0 auto;
+	width: 82%;
+	max-width: 1180px;
+}
+.header{
+	padding: 13px 0;
+	box-shadow: 0 2px 10px 5px rgba(0, 51, 102, .2);
+	position: sticky;
+	top: 0;
+}
+.header__wrapper{
+	display: flex;
+	align-items: center;
+}
+.header__logo{
+	display: block;
+	height: 49px;
+	width: 135px;
+}
+.header__menu{
+	display: flex;
+	justify-content: space-between;
+	width: 47%;
+	margin-left: 4%;
+}
+.header__menu-item{
+	font-size: 14px;
+}
+.header__auth{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-left: 11.1%;
+	width: 27%;
+}
+.header__phone{
+	font-size: 16px;
+}
+.header__phone-title{
+	color: #003366;
+	font-size: 12px;
+}
+.header__language-wrap{
+   text-align: center;
+   position: relative;
+}
+.header__language-wrap:hover .header__language-content{
+    display: flex;
+}
+.header__language-wrap:hover .header__language-button::after{
+    transform: scale(1, -1);
+}
+.header__language-button{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 52px;
+    height: 36px;
+    border: 1px solid #ccd5df;
+    border-radius: 3px;
+}
+.header__language-button::after {
+    background: rgba(0, 0, 0, 0) url("../img/language-arrow.png") no-repeat scroll center center;
+    content: "";
+    position: relative;
+    width: 9px;
+    height: 6px;
+    margin-left: 5px;
+}
+.header__language-content{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 52px;
+    height: 36px;
+    background-color: #fff;
+}
+.header__language-button,.header__language-content{
+	font-size: 14px;
+}
+.burger-menu__burger{
+	display: none;
+	width: 27px;
+	height: 17px;
+	position: absolute;
+	top: 39%;
+	right: 5.2%;
+	z-index: 40;
+}
+.burger-menu__burger_lines,
+.burger-menu__burger_lines::after,
+.burger-menu__burger_lines::before{
+	position: absolute;
+	width: 27px;
+	height: 2px;
+	background-color: #003366;
+	transition: transform 0.2s ease;
+}
+.burger-menu__burger_lines{
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.burger-menu__burger_lines::after{
+	content: '';
+	top: 7px;
+}
+.burger-menu__burger_lines::before{
+	content: '';
+	top:-7px;
+}
+.burger-menu-active .burger-menu__burger_lines {
+	background-color: transparent;
+}
+.burger-menu-active .burger-menu__burger_lines::before {
+	top: 0;
+	transform: rotate(45deg);
+}
+.burger-menu-active .burger-menu__burger_lines::after {
+	top: 0;
+	transform: rotate(-45deg);
+}
+.burger-menu__content{
+	height: 100%;
+	z-index: 20;
+	position: fixed;
+	display: none;
+	background-color: #fff;
+	top: 0;
+	right: -100%;
+	transition: 0.5s;
+}
+.burger-menu-active .burger-menu__content{
+	right: 0;
+}
+.burger-menu__nav{
+	padding-top: 48px;
+	display: flex;
+	flex-direction: column;
+}
+.burger-menu__nav_link{
+	font-size: 12px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 226px;
+	padding: 7px 17px 7px 22px;
+	border-bottom: 1px solid #ccd5df;
+}
+.burger-menu__nav_link:first-child{
+	border-top: 1px solid #ccd5df;
+}
+.burger-menu__contacts-wrap{
+	padding-left: 22px;
+}
+.burger-menu__auth-wrap{
+	padding: 24px 0;
+}
+.burger-menu__auth-link{
+	display: flex;
+	align-items: center;
+}
+.burger-menu__auth-link_text{
+	margin-left: 10px;
+	border-bottom: 1px solid #003366;
+	font-size: 16px;
+}
+.burger-menu__contacts_title, .burger-menu__contacts_desc{
+	font-size: 14px;
+	color: #003366;
+}
+.burger-menu__contacts_phone_wrap{
+	padding: 12px 0;
+}
+.burger-menu__contacts_phone{
+	font-size: 18px;
+}
+.burger-menu__contacts_desc_wrap{
+	padding-bottom: 25px;
+}
+.burger-menu__contacts_language{
+	display: flex;
+}
+.burger-menu__contacts_language_title{
+	color: #043464;
+	font-size: 16px;
+	margin-right: 22px;
+}
+.burger-menu__contacts_language_link:first-of-type{
+	margin-right: 10px;
+}
+
+.burger-menu__overlay{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 10;
+	background-color: rgba(0,0,0,0.58);
+	transition: 0.5s;
+}
+.burger-menu-active .burger-menu__overlay{
+	display: block;
+}
+
+
+
+
+
+@media screen and (max-width: 1400px){
+	.header__wrapper{
+		justify-content: space-between;
+	}
+	.header__menu, .header__auth{
+		margin-left: 0;
+	}
+}
+
+@media screen and (max-width: 1300px){
+	.header__auth, .header__menu{
+		width: auto;
+	}
+	.header__menu-item:not(:last-child){
+		margin-right: 5px;
+	}
+	.header__auth-button{
+		margin-left: 10px;
+	}
+	.header__contacts{
+		display: none;
+	}
+}
+
+@media screen and (max-width: 1024px){
+	.header{
+		padding: 5px 0;	
+	}
+	.header__logo{
+		display: block;
+		height: 38px;
+		width: 105px;
+	}
+	.header__auth{
+		margin-right: 10%;
+	}
+	.auth-button{
+		background: transparent;
+		width: auto;
+		height: auto;
+	}
+	.auth-button-link{
+		color: #ff8900;
+		border-bottom: 1px solid #ff8900;
+	}
+	.burger-menu__content{
+		display: block;
+	}
+	.burger-menu__burger{
+		display: block;
+	}
+	.header__menu, .header__language-wrap{
+		display: none;
+	}
+	.wrapper{
+		width: 89%;
+	}
+}
+
+@media screen and (max-width: 400px){
+	.header__auth{
+		margin-right: 19.6%;
+	}
+}
