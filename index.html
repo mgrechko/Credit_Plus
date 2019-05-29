@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="pickadate/lib/themes/default.css">
+	<link rel="stylesheet" href="pickadate/lib/themes/default.date.css">
 	<link rel="stylesheet" href="css/fonts.css">
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -76,10 +78,333 @@
 			<div class="burger-menu__overlay"></div>
 		</div>
 	</div>
+	<div class="main">
+		<div class="credit-block blue-font">
+			<div class="wrapper shadow credit-wrapper">
+				<div class="credit-block__info-block">
+					<div class="credit-block__info-block_title1 title blue-font">Кредит онлайн на карту</div>
+					<div class="credit-block__info-block_title2 title orange-font">Деньги под 0% <br>за 7 минут</div>
+				</div>
+				<form class="credit-block__calculator-block" action="#" name="calcform" method="post">
+					<div class="calculate-block">
+						<div class="amount-block calс-block">
+							<div class="calc-text">
+								<div class="font-avenir-next-cyr-bold calc-title">Выберите сумму</div>
+								<input type="text" class="amount-input calc-input font-avenir-next-cyr-bold" placeholder="2200 грн">
+							</div>
+							<div class="amount-block__slider">
+								<div class="slider_block">
+									<div class="amount-minus-button minus-button"><span></span></div>
+									<input class="amount-range range-input" type="range" min="500" max="4000" step="100" value="2200">
+									<div class="amount-plus-button plus-button"><span></span></div>
+								</div>
+								<div class="range_block grey-font font-myriad-pro-regular">
+									<div class="amount-from from">500 грн</div>
+									<div class="amount-to to">4000 грн</div>
+								</div>
+							</div>
+						</div>
+						<div class="term-block calс-block">
+							<div class="calc-text">
+								<div class=" font-avenir-next-cyr-bold calc-title">Выберите срок</div>
+								<div class="date-inputs">
+									<input type="text" class="hidden-input calc-input datepicker">
+									<input type="text" class="term-input calc-input font-avenir-next-cyr-bold" placeholder="15 дней">
+								</div>
+							</div>
+							<div class="term-block__slider">
+								<div class="slider_block">
+									<div class="term-minus-button minus-button"><span></span></div>
+									<input class="term-range range-input" type="range" min="5" max="30" step="1" value="15">
+									<div class="term-plus-button plus-button"><span></span></div>
+								</div>
+								<div class="range_block grey-font font-myriad-pro-regular">
+									<div class="term-from from">5 дней</div>
+									<div class="term-to to">30 дней</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="total-block">
+						<div class="total-block_info">
+							<div class="total-block__money total-content">
+								<div class="money_title total-title font-myriad-pro-regular">Вы занимаете</div>
+								<div class="money_amount amount-block">
+									<div class="money_amount_num font-avenir-next-cyr-bold">2200 грн</div>
+								</div>
+							</div>
+							<div class="total-block__percent total-content">
+								<div class="percent_title total-title font-myriad-pro-regular">Проценты</div>
+								<div class="percent_amount amount-block">
+									<div class="percent_amount_num font-avenir-next-cyr-bold">4 грн</div>
+									<div class="percent_amount_old font-myriad-pro-regular">950 грн</div>
+								</div>
+							</div>
+							<div class="total-block__total total-content">
+								<div class="total_title total-title font-myriad-pro-regular">К погашению</div>
+								<div class="total_amount amount-block">
+									<div class="total_amount_num font-avenir-next-cyr-bold">2204 грн</div>
+									<div class="total_date font-myriad-pro-regular">до 3 ноября</div>
+								</div>
+							</div>
+						</div>
+						<input type="submit" class="button calc-button font-avenir-next-cyr-bold" value="Получить деньги">
+						<a href="" class="promo-link font-myriad-pro-regular">Ввести промокод</a>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="features-block blue-font">
+			<div class="wrapper features-wrapper">
+				<div class="features-block__title title">Почему стоит оформить кредит онлайн в Кредит Плюс?</div>
+				<div class="features-block__tabs-header tabs-header">
+					<div class="features-block__tab-h tab-h title tab-active" data-tab="0">Новым клиентам</div>
+					<div class="features-block__tab-h tab-h title" data-tab="1">Постоянным клиентам</div>
+				</div>
+				<div class="features-block__info">
+					<div class="new-clients-block shadow white-bg clients-block" style="display: flex">
+						<div class="new-clients-block__title clients-title font-avenir-next-cyr-bold">Новым клиентам</div>
+						<div class="new-clients-block__feature feature-block">
+							<img src="img/new-client1.png" alt="">
+							<div class="feature-block_desc font-avenir-next-cyr-regular">Получите деньги <span>под 0,01% до 4000 грн</span> без комиссий и дополнительных платежей. Заявка бесплатна</div>
+						</div>
+						<div class="new-clients-block__feature feature-block">
+							<img src="img/new-client2.png" alt="">
+							<div class="feature-block_desc font-avenir-next-cyr-regular">Простая <span>регистрация в 3 шага.</span> Без фото и справок. Доступно продление срока</div>
+						</div>
+						<div class="new-clients-block__feature feature-block">
+							<img src="img/new-client3.png" alt="">
+							<div class="feature-block_desc font-avenir-next-cyr-regular">Одобряем 7 из 10 заявок. <span>Без залога и поручителей</span> не выходя из дома.</div>
+						</div>
+						<div class="new-clients-block__feature feature-block">
+							<img src="img/new-client4.png" alt="">
+							<div class="feature-block_desc font-avenir-next-cyr-regular"><span>Все данные надежно защищены</span> и обрабатываются через зашифрованное соединение. </div>
+						</div>
+					</div>
+					<div class="reg-clients-block shadow white-bg clients-block">
+						<div class="reg-clients-block__title clients-title font-avenir-next-cyr-bold">Постоянным клиентам</div>
+						<div class="reg-clients-block__feature feature-block">
+							<img src="img/reg-client1.png" alt="">
+							<div class="feature-block_desc font-avenir-next-cyr-regular">Получайте <span>до 10 000 грн и скидки до 70%</span> с программой лояльности и акционным предложениями</div>
+						</div>
+						<div class="reg-clients-block__feature feature-block">
+							<img src="img/reg-client2.png" alt="">
+							<div class="feature-block_desc font-avenir-next-cyr-regular">Автоматическая <span>выдача за 2 минуты 24/7.</span> Без звонков. Доступно продления срока</div>
+						</div>
+						<div class="reg-clients-block__feature feature-block">
+							<img src="img/reg-client3.png" alt="">
+							<div class="feature-block_desc font-avenir-next-cyr-regular"><span>Одобряем 9 из 10</span> заявок. Без вопросов и проверок</div>
+						</div>
+						<div class="reg-clients-block__feature feature-block">
+							<img src="img/reg-client4.png" alt="">
+							<div class="feature-block_desc font-avenir-next-cyr-regular"><span>Все данные надежно защищены</span> и обрабатываются через зашифрованное соединение. </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="credit-desc-block blue-font">
+			<div class="credit-desc-block__tabs-header tabs-header">
+				<div class="credit-desc-block__tab-h tab-h title tab-active" data-tab="0">Как взять</div>
+				<div class="credit-desc-block__tab-h tab-h title" data-tab="1">Как погасить</div>
+			</div>
+			<div class="take-credit-block credits-block" style="display: block;">
+				<div class="credit-block__title title">Как взять кредит онлайн в Кредит Плюс</div>
+				<div class="wrapper">
+					<div class="credit-block__body">
+						<div class="credit-block__item">
+							<div class="credit-block__item_num big-font">1</div>
+							<div class="credit-block__item_info">
+								<div class="credit-block__item_title font-avenir-next-cyr-demi">Зарегистрируйтесь</div>
+								<div class="credit-block__item_desc">Пройдите <span>4 простых шага,</span> без загрузки фото и скан-копий  документов</div>
+							</div>
+						</div>
+						<div class="credit-block__item">
+							<div class="credit-block__item_num big-font">2</div>
+							<div class="credit-block__item_info">
+								<div class="credit-block__item_title font-avenir-next-cyr-demi">Верифицируйте карту</div>
+								<div class="credit-block__item_desc"><span>Указать данные</span> вашей банковской карты, на которых хотите получить деньги</div>
+							</div>
+						</div>
+						<div class="credit-block__item">
+							<div class="credit-block__item_num big-font">3</div>
+							<div class="credit-block__item_info">
+								<div class="credit-block__item_title font-avenir-next-cyr-demi">Подписать договор</div>
+								<div class="credit-block__item_desc">Подписать его, нажав «Согласиться» и <span>получить деньги</span> на свою карту</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="credit-block__video">
+					<a href="#" class="credit-block__video_link">
+						<p>Смотреть видео</p>
+						<span><img src="img/play_video_button.png" alt="play"></span>
+						<img class="adaptive-button-play" src="img/play_video_button_adaptive.png" alt="play">
+					</a>
+				</div>
+			</div>
+			<div class="repay-credit-block credits-block">
+				<div class="credit-block__title title">Как погасить кредит онлайн в Кредит Плюс</div>
+				<div class="wrapper">
+					<div class="credit-block__body">
+						<div class="credit-block__item">
+							<div class="credit-block__item_num big-font">1</div>
+							<div class="credit-block__item_info">
+								<div class="credit-block__item_title font-avenir-next-cyr-demi">Зарегистрируйтесь</div>
+								<div class="credit-block__item_desc">Пройдите <span>4 простых шага,</span> без загрузки фото и скан-копий  документов</div>
+							</div>
+						</div>
+						<div class="credit-block__item">
+							<div class="credit-block__item_num big-font">2</div>
+							<div class="credit-block__item_info">
+								<div class="credit-block__item_title font-avenir-next-cyr-demi">Верифицируйте карту</div>
+								<div class="credit-block__item_desc"><span>Указать данные</span> вашей банковской карты, на которых хотите получить деньги</div>
+							</div>
+						</div>
+						<div class="credit-block__item">
+							<div class="credit-block__item_num big-font">3</div>
+							<div class="credit-block__item_info">
+								<div class="credit-block__item_title font-avenir-next-cyr-demi">Подписать договор</div>
+								<div class="credit-block__item_desc">Подписать его, нажав «Согласиться» и <span>получить деньги</span> на свою карту</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="credit-block__video">
+					<a href="#" class="credit-block__video_link">
+						<p>Смотреть видео</p>
+						<span><img src="img/play_video_button.png" alt="play"></span>
+						<img class="adaptive-button-play" src="img/play_video_button_adaptive.png" alt="play">
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="reviews-block blue-font">
+			<div class="wrapper reviews-block__wrapper">
+				<div class="reviews-block__title title">Отзывы</div>
+				<div class="reviews-block__slider">
+					<div class="reviews-block__slider-line slider-line">
+						<div class="reviews-slide slide slide-block shadow">
+							<div class="slide-content">
+								<div class="reviews-slide_head slide_head">
+									<div class="reviews-slide_head_photo">
+										<img src="img/reviews_photo1.jpg" alt="photo">
+									</div>
+									<div class="reviews-slide_head_title slide_head_title">
+										<div class="reviews-slide_head_name">Татьяна.</div>
+										<div class="reviews-slide_head_city">г.Мелитополь.</div>
+										<div class="reviews-slide_head_profession">Учительница.</div>
+									</div>
+								</div>
+								<div class="reviews-slide_body slide_body">
+									Возникла небольшая проблема при получении денег.Работники сервиса решили вопрос молниеносно.Средства поступили без задержки.Однозначно большой плюс и уважение.С моей стороны рекомендация другим и продолжение сотрудничества.За вежливое отношение отдельное спасибо!
+								</div>
+							</div>
+						</div>
+						<div class="reviews-slide slide slide-block shadow">
+							<div class="slide-content">
+								<div class="reviews-slide_head slide_head">
+									<div class="reviews-slide_head_photo">
+										<img src="img/reviews_photo2.jpg" alt="photo">
+									</div>
+									<div class="reviews-slide_head_title slide_head_title">
+										<div class="reviews-slide_head_name">Валентина.</div>
+										<div class="reviews-slide_head_city">г.Киев.</div>
+										<div class="reviews-slide_head_profession">Медсестра.</div>
+									</div>
+								</div>
+								<div class="reviews-slide_body slide_body">
+									Возникла небольшая проблема при получении денег.Работники сервиса решили вопрос молниеносно.Средства поступили без задержки.Однозначно большой плюс и уважение.С моей стороны рекомендация другим и продолжение сотрудничества.За вежливое отношение отдельное спасибо!
+								</div>
+							</div>
+						</div>
+						<div class="reviews-slide slide slide-block shadow">
+							<div class="slide-content">
+								<div class="reviews-slide_head slide_head">
+									<div class="reviews-slide_head_photo">
+										<img src="img/reviews_photo3.jpg" alt="photo">
+									</div>
+									<div class="reviews-slide_head_title slide_head_title">
+										<div class="reviews-slide_head_name">Джими.</div>
+										<div class="reviews-slide_head_city">г.Каменское.</div>
+										<div class="reviews-slide_head_profession">Шахтер.</div>
+									</div>
+								</div>
+								<div class="reviews-slide_body slide_body">
+									Возникла небольшая проблема при получении денег.Работники сервиса решили вопрос молниеносно.Средства поступили без задержки.Однозначно большой плюс и уважение.С моей стороны рекомендация другим и продолжение сотрудничества.За вежливое отношение отдельное спасибо!
+								</div>
+							</div>
+						</div>
+						<div class="reviews-slide slide slide-block shadow">
+							<div class="slide-content">
+								<div class="reviews-slide_head slide_head">
+									<div class="reviews-slide_head_photo">
+										<img src="img/reviews_photo1.jpg" alt="photo">
+									</div>
+									<div class="reviews-slide_head_title slide_head_title">
+										<div class="reviews-slide_head_name">Татьяна.</div>
+										<div class="reviews-slide_head_city">г.Мелитополь.</div>
+										<div class="reviews-slide_head_profession">Учительница.</div>
+									</div>
+								</div>
+								<div class="reviews-slide_body slide_body">
+									Возникла небольшая проблема при получении денег.Работники сервиса решили вопрос молниеносно.Средства поступили без задержки.Однозначно большой плюс и уважение.С моей стороны рекомендация другим и продолжение сотрудничества.За вежливое отношение отдельное спасибо!
+								</div>
+							</div>
+						</div>
+						<div class="reviews-slide slide slide-block shadow">
+							<div class="slide-content">
+								<div class="reviews-slide_head slide_head">
+									<div class="reviews-slide_head_photo">
+										<img src="img/reviews_photo2.jpg" alt="photo">
+									</div>
+									<div class="reviews-slide_head_title slide_head_title">
+										<div class="reviews-slide_head_name">Валентина.</div>
+										<div class="reviews-slide_head_city">г.Киев.</div>
+										<div class="reviews-slide_head_profession">Медсестра.</div>
+									</div>
+								</div>
+								<div class="reviews-slide_body slide_body">
+									Возникла небольшая проблема при получении денег.Работники сервиса решили вопрос молниеносно.Средства поступили без задержки.Однозначно большой плюс и уважение.С моей стороны рекомендация другим и продолжение сотрудничества.За вежливое отношение отдельное спасибо!
+								</div>
+							</div>
+						</div>
+						<div class="reviews-slide slide slide-block shadow">
+							<div class="slide-content">
+								<div class="reviews-slide_head slide_head">
+									<div class="reviews-slide_head_photo">
+										<img src="img/reviews_photo3.jpg" alt="photo">
+									</div>
+									<div class="reviews-slide_head_title slide_head_title">
+										<div class="reviews-slide_head_name">Джими.</div>
+										<div class="reviews-slide_head_city">г.Каменское.</div>
+										<div class="reviews-slide_head_profession">Шахтер.</div>
+									</div>
+								</div>
+								<div class="reviews-slide_body slide_body">
+									Возникла небольшая проблема при получении денег.Работники сервиса решили вопрос молниеносно.Средства поступили без задержки.Однозначно большой плюс и уважение.С моей стороны рекомендация другим и продолжение сотрудничества.За вежливое отношение отдельное спасибо!
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="slider-nav">
+					<button class="rev-prev prev"><img src="img/slider-arrow.png" alt=""></button>
+  					<button class="rev-next next"><img src="img/slider-arrow.png" alt=""></button>
+				</div>
+				<div class="rev-dots dots">
+				</div>
+			</div>
+		</div>
+	</div>
 	
-
-
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="pickadate/lib/picker.js"></script>
+	<script src="pickadate/lib/legacy.js"></script>
+	<script src="pickadate/lib/picker.date.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>
