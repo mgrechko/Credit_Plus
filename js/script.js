@@ -199,7 +199,7 @@ function tabSwitch(d){
 
 //reviews slider - start
 function reviewsSlider(){
-	let slideWidth = $('.slide-block').width();
+	let slideWidth = $('.reviews-slide').width();
 	let left = 0;
 
 	$('.rev-prev').prop('disabled', true);
@@ -207,11 +207,11 @@ function reviewsSlider(){
 	if($(window).width() < 1400){
 		$(".reviews-block__slider").width((slideWidth * 2) + 45);
 	}
-	if($(window).width() <= 1024){
+	if($(window).width() <= 740){
 		$(".reviews-block__slider").width(slideWidth);
 	}
 
-	$(".reviews-block__slider-line").width(($(".slide-block").length * slideWidth) + (($(".slide-block").length) - 1) * 45);
+	$(".reviews-block__slider-line").width(($(".reviews-slide").length * slideWidth) + (($(".reviews-slide").length) - 1) * 45);
 	let leftSwipe = "-" + ($(".reviews-block__slider-line").width() - $(".reviews-block__slider").width());
 
 	$(".rev-next").click(sliderLeft);
@@ -238,12 +238,29 @@ function reviewsSlider(){
 		$(this).addClass('active-dot');
 	});
 
+	$(".reviews-block__slider-line").swipe({
+        swipeLeft:swipeLeft,
+        swipeRight:swipeRight,
+        threshold:0
+	});
+
+	function swipeLeft(){		
+		if (left > leftSwipe){
+			sliderLeft();
+		}
+	}
+	function swipeRight(){		
+		if (left < 0){
+			sliderRight();
+		}
+	}
 	function sliderLeft(){
 		let sliderLine = $(".reviews-block__slider-line");
 		let dots = $('.rev-dot');
 		let dotRange = 0;
-		left = left - 355;
+		left = left - (slideWidth+45);
 		sliderLine.css("left", left+"px");
+
 		if (left <= leftSwipe){
 			$('.rev-next').prop('disabled', true);
 		}
@@ -281,7 +298,7 @@ function reviewsSlider(){
 		let sliderLine = $(".reviews-block__slider-line");
 		let dots = $('.rev-dot');
 		let dotRange = 0;
-		left = left + 355;
+		left = left + (slideWidth+45);
 		sliderLine.css("left", left+"px");
 		if (left <= leftSwipe){
 			$('.rev-next').prop('disabled', true);
@@ -340,7 +357,193 @@ function reviewsSlider(){
 }
 //reviews slider - end
 
+//media reviews slider - start
+function mediaReviewsSlider(){
+	let slideWidth = $('.media-reviews-slide-block').width();
+	let left = 0;
 
+	$('.media-rev-prev').prop('disabled', true);
+	$(".media-reviews-block__slider").width((slideWidth * 3) + 90);
+	if($(window).width() < 1400){
+		$(".media-reviews-block__slider").width((slideWidth * 2) + 45);
+	}
+	if($(window).width() <= 740){
+		$(".media-reviews-block__slider").width(slideWidth);
+	}
+
+	$(".media-reviews-block__slider-line").width(($(".media-reviews-slide-block").length * slideWidth) + (($(".media-reviews-slide-block").length) - 1) * 45);
+	let leftSwipe = "-" + ($(".media-reviews-block__slider-line").width() - $(".media-reviews-block__slider").width());
+
+	$(".media-rev-next").click(sliderLeft);
+	$(".media-rev-prev").click(sliderRight);
+
+	let dotAmount = $(".media-reviews-block__slider-line").width() / $(".media-reviews-block__slider").width();
+	dotAmount = Math.floor(dotAmount);
+
+	for(let i=0; i<dotAmount; i++){
+		let activeDot = '';
+		if (i == 0){
+			activeDot = 'active-dot';
+		}
+		$('.media-rev-dots').append('<div class="media-rev-dot dot '+activeDot+'" data-index="'+i+'"></div>');
+	}
+
+	$(".media-rev-dot").click(function(){
+		let mgRange = 0;
+		for(let i = 0; i<$(this).index(); i++){
+			mgRange = 45*i;
+		}
+		sliderDot(($(this).index() * $(".media-reviews-block__slider").width()) + mgRange);
+		$(".media-rev-dot").removeClass('active-dot');
+		$(this).addClass('active-dot');
+	});
+
+	$(".media-reviews-block__slider-line").swipe({
+        swipeLeft:swipeLeft,
+        swipeRight:swipeRight,
+        threshold:0
+	});
+
+	function swipeLeft(){		
+		if (left > leftSwipe){
+			sliderLeft();
+		}
+	}
+	function swipeRight(){		
+		if (left < 0){
+			sliderRight();
+		}
+	}
+	function sliderLeft(){
+		let sliderLine = $(".media-reviews-block__slider-line");
+		let dots = $('.media-rev-dot');
+		let dotRange = 0;
+		left = left - (slideWidth+45);
+		sliderLine.css("left", left+"px");
+
+		if (left <= leftSwipe){
+			$('.media-rev-next').prop('disabled', true);
+		}
+		else{
+			$('.media-rev-next').prop('disabled', false);
+		}
+		if (left >= 0){
+			$('.media-rev-prev').prop('disabled', true);
+		}
+		else{
+			$('.media-rev-prev').prop('disabled', false);
+		}
+		for(let i=0; i<dots.length; i++){
+			let mgDotRange = (i) * 45;
+			if($(dots[i]).attr('data-index') == 0){
+				dotRange = $(dots[i]).attr('data-index') * $(".media-reviews-block__slider").width();
+				
+				if(dotRange === left){
+					$(".media-rev-dot").removeClass('active-dot');
+					$(dots[i]).addClass('active-dot');
+				}
+			}
+			else{
+				dotRange = parseInt('-'+$(dots[i]).attr('data-index')*$(".media-reviews-block__slider").width());
+				dotRange -= mgDotRange;
+				if(dotRange === left){
+					$(".media-rev-dot").removeClass('active-dot');
+					$(dots[i]).addClass('active-dot');
+				}
+			}
+		}
+	}
+
+	function sliderRight(){
+		let sliderLine = $(".media-reviews-block__slider-line");
+		let dots = $('.media-rev-dot');
+		let dotRange = 0;
+		left = left + (slideWidth+45);
+		sliderLine.css("left", left+"px");
+		if (left <= leftSwipe){
+			$('.media-rev-next').prop('disabled', true);
+		}
+		else{
+			$('.media-rev-next').prop('disabled', false);
+		}
+		if (left >= 0){
+			$('.media-rev-prev').prop('disabled', true);
+		}
+		else{
+			$('.media-rev-prev').prop('disabled', false);
+		}
+		for(let i=0; i<dots.length; i++){
+			let mgDotRange = (i) * 45;
+			if($(dots[i]).attr('data-index') == 0){
+				dotRange = $(dots[i]).attr('data-index') * $(".media-reviews-block__slider").width();
+				if(dotRange === left){
+					$(".media-rev-dot").removeClass('active-dot');
+					$(dots[i]).addClass('active-dot');
+				}
+			}
+			else{
+				dotRange = parseInt('-'+$(dots[i]).attr('data-index')*$(".media-reviews-block__slider").width());
+				dotRange -= mgDotRange;
+				if(dotRange === left){
+					$(".media-rev-dot").removeClass('active-dot');
+					$(dots[i]).addClass('active-dot');
+				}
+			}
+		}
+	}
+
+	function sliderDot(n){
+		let sliderLine = $(".media-reviews-block__slider-line");
+		left = n;
+		if(n > 0){
+			left+=45;
+			left = parseInt('-'+left);
+		}
+
+		sliderLine.css("left", left+"px");
+		if (left <= leftSwipe){
+			$('.media-rev-next').prop('disabled', true);
+		}
+		else{
+			$('.media-rev-next').prop('disabled', false);
+		}
+		if (left >= 0){
+			$('.media-rev-prev').prop('disabled', true);
+		}
+		else{
+			$('.media-rev-prev').prop('disabled', false);
+		}
+	}
+}
+//media reviews slider - end
+
+//content switch - start
+function contentSwitch(){
+	$('.description-block__content_items').slideToggle(300);
+	$('.description-block__content').toggleClass('hidden');
+
+	if($('.description-block__content').hasClass('hidden')){
+		$('.description-block__content_switch').html('Показать');
+	}
+	else{
+		$('.description-block__content_switch').html('Скрыть');
+	}
+}
+//content switch - end
+
+//services switch - start
+function servicesSwitch(){
+	$('.services-block').toggleClass('hidden');
+	
+	if($(window).width() > 1024){
+		$('.services-block__text').slideToggle(300);
+	}
+	else{
+		$('.services-block__text_adaptive').slideToggle(300);
+	}
+
+}
+//services switch - end
 
 
 
@@ -380,4 +583,7 @@ $(document).ready(function(){
 		tabSwitch(cTab);
 	});
 	reviewsSlider();
+	mediaReviewsSlider();
+	$('.description-block__content_switch').on('click', () => contentSwitch());
+	$('.services-block__title_switch').on('click', () => servicesSwitch());
 });
