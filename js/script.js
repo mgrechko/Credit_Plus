@@ -197,19 +197,63 @@ function tabSwitch(d){
 }
 //features tabs - end
 
+//video - start
+function creditVideo(selector){
+	$(window).resize(function(){
+		let videoWidth = $('.credit-block__video-block').width();
+		let videoHeight = (videoWidth*56.25)/100;
+		$('.credit-block__video-block').height(videoHeight);
+	});
+	$(window).resize();
+	
+	let crBlock = $(selector);
+	let play = crBlock.find('.credit-block__video_link');
+	let overlay = crBlock.find('.credit-block__video-overlay');
+	let videoBlock = crBlock.find('.credit-block__video-block');
+	let videoEl = crBlock.find('iframe');
+	let videoElSrc = crBlock.find('iframe').attr('src');
+
+	console.log(videoElSrc);
+
+	play.on('click', () => toggleVideo());
+	overlay.on('click', () => toggleVideo());
+
+	function toggleVideo(){
+		videoBlock.toggleClass('active');
+		overlay.toggleClass('active');
+		if(videoBlock.hasClass('active')){
+			$(videoEl).attr('src',videoElSrc);
+		}
+		else{
+			$(videoEl).attr('src','');
+		}
+	}
+
+}
+//video - end
+
+//sliders adaptive - start
+$(window).resize(function(){
+	reviewsSlider();
+	mediaReviewsSlider();
+});
+//sliders adaptive - end
+
 //reviews slider - start
 function reviewsSlider(){
 	let slideWidth = $('.reviews-slide').width();
 	let left = 0;
 
-	$('.rev-prev').prop('disabled', true);
 	$(".reviews-block__slider").width((slideWidth * 3) + 90);
+
 	if($(window).width() < 1400){
-		$(".reviews-block__slider").width((slideWidth * 2) + 45);
+		$(".reviews-block__slider").width(($('.reviews-slide').width() * 2) + 45);
 	}
 	if($(window).width() <= 740){
-		$(".reviews-block__slider").width(slideWidth);
+		$(".reviews-block__slider").width($('.reviews-slide').width());
 	}
+
+	$('.rev-prev').prop('disabled', true);
 
 	$(".reviews-block__slider-line").width(($(".reviews-slide").length * slideWidth) + (($(".reviews-slide").length) - 1) * 45);
 	let leftSwipe = "-" + ($(".reviews-block__slider-line").width() - $(".reviews-block__slider").width());
@@ -220,6 +264,8 @@ function reviewsSlider(){
 	let dotAmount = $(".reviews-block__slider-line").width() / $(".reviews-block__slider").width();
 	dotAmount = Math.floor(dotAmount);
 
+	$('.rev-dots').empty();
+	sliderDot(0);
 	for(let i=0; i<dotAmount; i++){
 		let activeDot = '';
 		if (i == 0){
@@ -380,6 +426,8 @@ function mediaReviewsSlider(){
 	let dotAmount = $(".media-reviews-block__slider-line").width() / $(".media-reviews-block__slider").width();
 	dotAmount = Math.floor(dotAmount);
 
+	$('.media-rev-dots').empty();
+	sliderDot(0);
 	for(let i=0; i<dotAmount; i++){
 		let activeDot = '';
 		if (i == 0){
@@ -517,6 +565,33 @@ function mediaReviewsSlider(){
 }
 //media reviews slider - end
 
+//reviews slider text limit - start
+function revSliderTextLimit(){
+	let revSlideBody = $('.reviews-slide_body');
+	for(let i=0; i<revSlideBody.length; i++){
+		if($(revSlideBody[i]).text().length > 285){
+			$(revSlideBody[i]).text($(revSlideBody[i]).text().substring(0, 285));
+			let lastIndex = $(revSlideBody[i]).text().lastIndexOf(" ");
+			$(revSlideBody[i]).text($(revSlideBody[i]).text().substring(0, lastIndex) + '...');
+		}
+	}
+}
+//reviews slider text limit - end
+
+//media reviews slider text limit - start
+function mediaRevSliderTextLimit(){
+	let revSlideBody = $('.media-reviews-slide_body');
+	for(let i=0; i<revSlideBody.length; i++){
+		if($(revSlideBody[i]).text().length > 110){
+			$(revSlideBody[i]).text($(revSlideBody[i]).text().substring(0, 110));
+			let lastIndex = $(revSlideBody[i]).text().lastIndexOf(" ");
+			$(revSlideBody[i]).text($(revSlideBody[i]).text().substring(0, lastIndex) + '...');
+		}
+	}
+}
+//media reviews slider text limit - end
+
+
 //content switch - start
 function contentSwitch(){
 	$('.description-block__content_items').slideToggle(300);
@@ -582,8 +657,13 @@ $(document).ready(function(){
 		let cTab = $(this);
 		tabSwitch(cTab);
 	});
+	creditVideo('.take-credit-block');
+	creditVideo('.repay-credit-block');
+	$(window).resize();
 	reviewsSlider();
 	mediaReviewsSlider();
+	revSliderTextLimit();
+	mediaRevSliderTextLimit();
 	$('.description-block__content_switch').on('click', () => contentSwitch());
 	$('.services-block__title_switch').on('click', () => servicesSwitch());
 });

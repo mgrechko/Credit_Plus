@@ -24,6 +24,9 @@ body{
 	color: #ffffff;
 }
 .auth-button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 109px;
 	height: 36px;
 }
@@ -36,7 +39,8 @@ body{
 	font-size: 16px;
 	color: #ffffff;
 	font-family: 'AvenirNextCyr-Demi', sans-serif;
-	border-bottom: 1px solid #ffffff;
+	text-decoration: underline;
+	text-decoration-style: solid;
 }
 .title{
 	font-family: 'AvenirNextCyr-Bold', sans-serif;
@@ -606,6 +610,7 @@ body{
 	margin-top: 10px;
 	font-family: 'AvenirNextCyr-Bold', sans-serif;
 	font-size: 36px;
+	cursor: pointer;
 }
 .credit-block__video_link p{
 	margin-right: 63px;
@@ -627,6 +632,47 @@ body{
 }
 .adaptive-button-play{
 	display: none;
+}
+.credit-block__video-overlay{
+	opacity: 0;
+	visibility: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 90;
+	background-color: rgba(0,0,0,0.58);
+	transition: 0.3s;
+}
+.credit-block__video-block{
+	opacity: 0;
+	visibility: hidden;
+	position: fixed;
+	top: 0%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+	min-width: 300px;
+	max-height: 80%;
+	transition: 0.3s;
+	z-index: 100;
+}
+.credit-block__video-block iframe{
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	height: 100%;
+}
+.credit-block__video-block.active{
+	opacity: 1;
+	visibility: visible;
+	top: 50%;
+}
+.credit-block__video-overlay.active{
+	opacity: 1;
+	visibility: visible;
 }
 
 .reviews-block{
@@ -1027,7 +1073,8 @@ body{
 	}
 	.auth-button-link{
 		color: #ff8900;
-		border-bottom: 1px solid #ff8900;
+		text-decoration: underline;
+		text-decoration-style: solid;
 	}
 	.burger-menu__content{
 		display: block;
@@ -1107,6 +1154,7 @@ body{
 	}
 	.features-block__title{
 		width: 89%;
+		padding-bottom: 40px;
 	}
 	.tabs-header{
 		width: 100%;
@@ -1250,7 +1298,8 @@ body{
 @media screen and (max-width: 500px){
 	.title{
 		font-size: 18px;
-		line-height: 19px;
+		line-height: 18px;
+		text-decoration-style: solid;
 	}
 	.calc-title{
 		font-size: 16px;
