@@ -213,8 +213,6 @@ function creditVideo(selector){
 	let videoEl = crBlock.find('iframe');
 	let videoElSrc = crBlock.find('iframe').attr('src');
 
-	console.log(videoElSrc);
-
 	play.on('click', () => toggleVideo());
 	overlay.on('click', () => toggleVideo());
 
@@ -234,57 +232,63 @@ function creditVideo(selector){
 
 //sliders adaptive - start
 $(window).resize(function(){
-	reviewsSlider();
-	mediaReviewsSlider();
+	slider('.reviews-block');
+	slider('.media-reviews-block');
 });
 //sliders adaptive - end
 
-//reviews slider - start
-function reviewsSlider(){
-	let slideWidth = $('.reviews-slide').width();
+//sliders - start
+function slider(selector){
+	let sliderBlock = $(selector);
+	let slidesBlock = sliderBlock.find('.slider');
+	let sliderLine = sliderBlock.find('.slider-line');
+	let slideBlock = sliderBlock.find('.slide-block');
+	let slideBlockWidth = $(slideBlock).width();
+	let prevButton = sliderBlock.find('.prev');
+	let nextButton = sliderBlock.find('.next');
+	let dots = sliderBlock.find('.dots');
+
 	let left = 0;
 
-	$(".reviews-block__slider").width((slideWidth * 3) + 90);
-
+	$(slidesBlock).width((slideBlockWidth * 3) + 90);
 	if($(window).width() < 1400){
-		$(".reviews-block__slider").width(($('.reviews-slide').width() * 2) + 45);
+		$(slidesBlock).width((slideBlockWidth * 2) + 45);
 	}
 	if($(window).width() <= 740){
-		$(".reviews-block__slider").width($('.reviews-slide').width());
+		$(slidesBlock).width(slideBlockWidth);
 	}
 
-	$('.rev-prev').prop('disabled', true);
+	$(sliderLine).width(($(slideBlock).length * slideBlockWidth) + (($(slideBlock).length) - 1) * 45);
+	let leftSwipe = "-" + ($(sliderLine).width() - $(slidesBlock).width());
 
-	$(".reviews-block__slider-line").width(($(".reviews-slide").length * slideWidth) + (($(".reviews-slide").length) - 1) * 45);
-	let leftSwipe = "-" + ($(".reviews-block__slider-line").width() - $(".reviews-block__slider").width());
+	$(prevButton).prop('disabled', true);
+	$(nextButton).click(sliderLeft);
+	$(prevButton).click(sliderRight);
 
-	$(".rev-next").click(sliderLeft);
-	$(".rev-prev").click(sliderRight);
-
-	let dotAmount = $(".reviews-block__slider-line").width() / $(".reviews-block__slider").width();
+	let dotAmount = $(sliderLine).width() / $(slidesBlock).width();
 	dotAmount = Math.floor(dotAmount);
 
-	$('.rev-dots').empty();
+	$(dots).empty();
 	sliderDot(0);
 	for(let i=0; i<dotAmount; i++){
 		let activeDot = '';
 		if (i == 0){
 			activeDot = 'active-dot';
 		}
-		$('.rev-dots').append('<div class="rev-dot dot '+activeDot+'" data-index="'+i+'"></div>');
+		$(dots).append('<div class="dot '+activeDot+'" data-index="'+i+'"></div>');
 	}
-
-	$(".rev-dot").click(function(){
+	let dot = sliderBlock.find('.dot');
+	$(dot).click(function(){
 		let mgRange = 0;
 		for(let i = 0; i<$(this).index(); i++){
 			mgRange = 45*i;
 		}
-		sliderDot(($(this).index() * $(".reviews-block__slider").width()) + mgRange);
-		$(".rev-dot").removeClass('active-dot');
+		sliderDot(($(this).index() * $(slidesBlock).width()) + mgRange);
+		$(dot).removeClass('active-dot');
 		$(this).addClass('active-dot');
 	});
 
-	$(".reviews-block__slider-line").swipe({
+	$(sliderLine).swipe({
         swipeLeft:swipeLeft,
         swipeRight:swipeRight,
         threshold:0
@@ -301,85 +305,82 @@ function reviewsSlider(){
 		}
 	}
 	function sliderLeft(){
-		let sliderLine = $(".reviews-block__slider-line");
-		let dots = $('.rev-dot');
 		let dotRange = 0;
-		left = left - (slideWidth+45);
+		let dot = sliderBlock.find('.dot');
+		left = left - (slideBlockWidth+45);
 		sliderLine.css("left", left+"px");
 
 		if (left <= leftSwipe){
-			$('.rev-next').prop('disabled', true);
+			$(nextButton).prop('disabled', true);
 		}
 		else{
-			$('.rev-next').prop('disabled', false);
+			$(nextButton).prop('disabled', false);
 		}
 		if (left >= 0){
-			$('.rev-prev').prop('disabled', true);
+			$(prevButton).prop('disabled', true);
 		}
 		else{
-			$('.rev-prev').prop('disabled', false);
+			$(prevButton).prop('disabled', false);
 		}
-		for(let i=0; i<dots.length; i++){
+		for(let i=0; i<dot.length; i++){
 			let mgDotRange = (i) * 45;
-			if($(dots[i]).attr('data-index') == 0){
-				dotRange = $(dots[i]).attr('data-index') * $(".reviews-block__slider").width();
+			if($(dot[i]).attr('data-index') == 0){
+				dotRange = $(dot[i]).attr('data-index') * $(slidesBlock).width();
 				
 				if(dotRange === left){
-					$(".rev-dot").removeClass('active-dot');
-					$(dots[i]).addClass('active-dot');
+					$(dot).removeClass('active-dot');
+					$(dot[i]).addClass('active-dot');
 				}
 			}
 			else{
-				dotRange = parseInt('-'+$(dots[i]).attr('data-index')*$(".reviews-block__slider").width());
+				dotRange = parseInt('-'+$(dot[i]).attr('data-index')*$(slidesBlock).width());
 				dotRange -= mgDotRange;
 				if(dotRange === left){
-					$(".rev-dot").removeClass('active-dot');
-					$(dots[i]).addClass('active-dot');
+					$(dot).removeClass('active-dot');
+					$(dot[i]).addClass('active-dot');
 				}
 			}
 		}
 	}
-
 	function sliderRight(){
-		let sliderLine = $(".reviews-block__slider-line");
-		let dots = $('.rev-dot');
+		let dot = sliderBlock.find('.dot');
 		let dotRange = 0;
-		left = left + (slideWidth+45);
+		left = left + (slideBlockWidth+45);
 		sliderLine.css("left", left+"px");
 		if (left <= leftSwipe){
-			$('.rev-next').prop('disabled', true);
+			$(nextButton).prop('disabled', true);
 		}
 		else{
-			$('.rev-next').prop('disabled', false);
+			$(nextButton).prop('disabled', false);
 		}
 		if (left >= 0){
-			$('.rev-prev').prop('disabled', true);
+			$(prevButton).prop('disabled', true);
 		}
 		else{
-			$('.rev-prev').prop('disabled', false);
+			$(prevButton).prop('disabled', false);
 		}
-		for(let i=0; i<dots.length; i++){
+		for(let i=0; i<dot.length; i++){
 			let mgDotRange = (i) * 45;
-			if($(dots[i]).attr('data-index') == 0){
-				dotRange = $(dots[i]).attr('data-index') * $(".reviews-block__slider").width();
+			if($(dot[i]).attr('data-index') == 0){
+				dotRange = $(dot[i]).attr('data-index') * $(slidesBlock).width();
+				
 				if(dotRange === left){
-					$(".rev-dot").removeClass('active-dot');
-					$(dots[i]).addClass('active-dot');
+					$(dot).removeClass('active-dot');
+					$(dot[i]).addClass('active-dot');
 				}
 			}
 			else{
-				dotRange = parseInt('-'+$(dots[i]).attr('data-index')*$(".reviews-block__slider").width());
+				dotRange = parseInt('-'+$(dot[i]).attr('data-index')*$(slidesBlock).width());
 				dotRange -= mgDotRange;
 				if(dotRange === left){
-					$(".rev-dot").removeClass('active-dot');
-					$(dots[i]).addClass('active-dot');
+					$(dot).removeClass('active-dot');
+					$(dot[i]).addClass('active-dot');
 				}
 			}
 		}
 	}
 
 	function sliderDot(n){
-		let sliderLine = $(".reviews-block__slider-line");
 		left = n;
 		if(n > 0){
 			left+=45;
@@ -388,182 +389,20 @@ function reviewsSlider(){
 
 		sliderLine.css("left", left+"px");
 		if (left <= leftSwipe){
-			$('.rev-next').prop('disabled', true);
+			$(nextButton).prop('disabled', true);
 		}
 		else{
-			$('.rev-next').prop('disabled', false);
+			$(nextButton).prop('disabled', false);
 		}
 		if (left >= 0){
-			$('.rev-prev').prop('disabled', true);
+			$(prevButton).prop('disabled', true);
 		}
 		else{
-			$('.rev-prev').prop('disabled', false);
+			$(prevButton).prop('disabled', false);
 		}
 	}
 }
-//reviews slider - end
-
-//media reviews slider - start
-function mediaReviewsSlider(){
-	let slideWidth = $('.media-reviews-slide-block').width();
-	let left = 0;
-
-	$('.media-rev-prev').prop('disabled', true);
-	$(".media-reviews-block__slider").width((slideWidth * 3) + 90);
-	if($(window).width() < 1400){
-		$(".media-reviews-block__slider").width((slideWidth * 2) + 45);
-	}
-	if($(window).width() <= 740){
-		$(".media-reviews-block__slider").width(slideWidth);
-	}
-
-	$(".media-reviews-block__slider-line").width(($(".media-reviews-slide-block").length * slideWidth) + (($(".media-reviews-slide-block").length) - 1) * 45);
-	let leftSwipe = "-" + ($(".media-reviews-block__slider-line").width() - $(".media-reviews-block__slider").width());
-
-	$(".media-rev-next").click(sliderLeft);
-	$(".media-rev-prev").click(sliderRight);
-
-	let dotAmount = $(".media-reviews-block__slider-line").width() / $(".media-reviews-block__slider").width();
-	dotAmount = Math.floor(dotAmount);
-
-	$('.media-rev-dots').empty();
-	sliderDot(0);
-	for(let i=0; i<dotAmount; i++){
-		let activeDot = '';
-		if (i == 0){
-			activeDot = 'active-dot';
-		}
-		$('.media-rev-dots').append('<div class="media-rev-dot dot '+activeDot+'" data-index="'+i+'"></div>');
-	}
-
-	$(".media-rev-dot").click(function(){
-		let mgRange = 0;
-		for(let i = 0; i<$(this).index(); i++){
-			mgRange = 45*i;
-		}
-		sliderDot(($(this).index() * $(".media-reviews-block__slider").width()) + mgRange);
-		$(".media-rev-dot").removeClass('active-dot');
-		$(this).addClass('active-dot');
-	});
-
-	$(".media-reviews-block__slider-line").swipe({
-        swipeLeft:swipeLeft,
-        swipeRight:swipeRight,
-        threshold:0
-	});
-
-	function swipeLeft(){		
-		if (left > leftSwipe){
-			sliderLeft();
-		}
-	}
-	function swipeRight(){		
-		if (left < 0){
-			sliderRight();
-		}
-	}
-	function sliderLeft(){
-		let sliderLine = $(".media-reviews-block__slider-line");
-		let dots = $('.media-rev-dot');
-		let dotRange = 0;
-		left = left - (slideWidth+45);
-		sliderLine.css("left", left+"px");
-
-		if (left <= leftSwipe){
-			$('.media-rev-next').prop('disabled', true);
-		}
-		else{
-			$('.media-rev-next').prop('disabled', false);
-		}
-		if (left >= 0){
-			$('.media-rev-prev').prop('disabled', true);
-		}
-		else{
-			$('.media-rev-prev').prop('disabled', false);
-		}
-		for(let i=0; i<dots.length; i++){
-			let mgDotRange = (i) * 45;
-			if($(dots[i]).attr('data-index') == 0){
-				dotRange = $(dots[i]).attr('data-index') * $(".media-reviews-block__slider").width();
-				
-				if(dotRange === left){
-					$(".media-rev-dot").removeClass('active-dot');
-					$(dots[i]).addClass('active-dot');
-				}
-			}
-			else{
-				dotRange = parseInt('-'+$(dots[i]).attr('data-index')*$(".media-reviews-block__slider").width());
-				dotRange -= mgDotRange;
-				if(dotRange === left){
-					$(".media-rev-dot").removeClass('active-dot');
-					$(dots[i]).addClass('active-dot');
-				}
-			}
-		}
-	}
-
-	function sliderRight(){
-		let sliderLine = $(".media-reviews-block__slider-line");
-		let dots = $('.media-rev-dot');
-		let dotRange = 0;
-		left = left + (slideWidth+45);
-		sliderLine.css("left", left+"px");
-		if (left <= leftSwipe){
-			$('.media-rev-next').prop('disabled', true);
-		}
-		else{
-			$('.media-rev-next').prop('disabled', false);
-		}
-		if (left >= 0){
-			$('.media-rev-prev').prop('disabled', true);
-		}
-		else{
-			$('.media-rev-prev').prop('disabled', false);
-		}
-		for(let i=0; i<dots.length; i++){
-			let mgDotRange = (i) * 45;
-			if($(dots[i]).attr('data-index') == 0){
-				dotRange = $(dots[i]).attr('data-index') * $(".media-reviews-block__slider").width();
-				if(dotRange === left){
-					$(".media-rev-dot").removeClass('active-dot');
-					$(dots[i]).addClass('active-dot');
-				}
-			}
-			else{
-				dotRange = parseInt('-'+$(dots[i]).attr('data-index')*$(".media-reviews-block__slider").width());
-				dotRange -= mgDotRange;
-				if(dotRange === left){
-					$(".media-rev-dot").removeClass('active-dot');
-					$(dots[i]).addClass('active-dot');
-				}
-			}
-		}
-	}
-
-	function sliderDot(n){
-		let sliderLine = $(".media-reviews-block__slider-line");
-		left = n;
-		if(n > 0){
-			left+=45;
-			left = parseInt('-'+left);
-		}
-
-		sliderLine.css("left", left+"px");
-		if (left <= leftSwipe){
-			$('.media-rev-next').prop('disabled', true);
-		}
-		else{
-			$('.media-rev-next').prop('disabled', false);
-		}
-		if (left >= 0){
-			$('.media-rev-prev').prop('disabled', true);
-		}
-		else{
-			$('.media-rev-prev').prop('disabled', false);
-		}
-	}
-}
-//media reviews slider - end
+//sliders - end
 
 //reviews slider text limit - start
 function revSliderTextLimit(){
@@ -590,7 +429,6 @@ function mediaRevSliderTextLimit(){
 	}
 }
 //media reviews slider text limit - end
-
 
 //content switch - start
 function contentSwitch(){
@@ -619,9 +457,6 @@ function servicesSwitch(){
 
 }
 //services switch - end
-
-
-
 
 
 $(document).ready(function(){
@@ -660,8 +495,8 @@ $(document).ready(function(){
 	creditVideo('.take-credit-block');
 	creditVideo('.repay-credit-block');
 	$(window).resize();
-	reviewsSlider();
-	mediaReviewsSlider();
+	slider('.reviews-block');
+	slider('.media-reviews-block');
 	revSliderTextLimit();
 	mediaRevSliderTextLimit();
 	$('.description-block__content_switch').on('click', () => contentSwitch());
